@@ -3,71 +3,80 @@ declare(strict_types=1);
 
 namespace VUmanskyi\SeoBreadcrumbs;
 
-use VUmanskyi\SeoBreadcrumbs\Interfaces\TemplateInterface;
+use yii\helpers\Html;
 
 /**
  * @author Vlad Umanskyi <vladumanskyi@gmail.com>
  * @version  1.0.0
  */
-class Template implements TemplateInterface
+class Template
 {
-    /**
-     * The HTML attributes for the breadcrumb container tag.
-     * @var array
-     */
-    protected $options = ['class' => 'breadcrumb'];
-
     /**
      * @var string
      */
     protected $tag = 'ul';
 
     /**
-     * @var string render inactive item template
+     * @var array
      */
-    protected $itemTemplate = "<li itemscope=\"\" itemtype=\"//data-vocabulary.org/Breadcrumb\">{link}</li>\n";
+    protected $params = [];
 
     /**
-     * @var string active item template
+     * Use default params
+     *
+     * @var boolean
      */
-    protected $activeItemTemplate = "<li class=\"active\">{link}</li>\n";
+    protected $default = true;
+
+     /**
+     * @var string
+     */
+    protected $template = "<li>{link}</li>\n";
+
+    /**
+     * @var string
+     */
+    protected  $activeTemplate = '<li class="active">{link}</li>\n';
+
+    /**
+     * @param array $params
+     * @param string $tag
+     * @param boolean $default
+     */
+    public function __construct(array $params = [], string $tag = 'ul', bool $default = true)
+    {
+        $this->params = $params;
+
+        $this->tag = $tag;
+
+        $this->default = $default;
+    }
 
     /**
      * @return array
      */
-    public function getOptions(): array
+    public function getParams(): array
     {
-        return $this->options;
+        return $this->params;
     }
 
-    /**
-     * @param array $options
-     * @return TemplateInterface
-     */
-    public function options(array $options): TemplateInterface
+    public function render()
     {
-        $this->options = $options;
+        if (!$this->getParams()) {
+            return '';
+        }
 
-        return $this;
+        $params = $this->getParams();
+
+        $links = [];
+        foreach ($params as $param) {
+            if (!empty($param['template'])) {
+                $links[] = strtr($param['template'], ['{link}' => $param['label']]);
+            } else {
+                $links[] = '<li>' . Html::a($param['label'], $param['url']) . '</li>';
+            }
+        }
+
+        return Html::tag($this->tag, implode('', $links));
     }
-
-    /**
-     * @return string
-     */
-    public function getTag(): string
-    {
-        return $this->tag;
-    }
-
-    /**
-     * @param string $tag
-     * @return TemplateInterface
-     */
-    public function tag(string $tag): TemplateInterface
-    {
-        $this->tag = $tag;
-
-        return $this;
-    }
-
 }

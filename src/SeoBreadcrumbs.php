@@ -3,11 +3,13 @@ declare(strict_types=1);
 
 namespace VUmanskyi\SeoBreadcrumbs;
 
+use yii\base\Widget;
+
 /**
  * @author Vlad Umanskyi <vladumanskyi@gmail.com>
  * @version  1.0.0
  */
-class SeoBreadcrumbs
+class SeoBreadcrumbs extends Widget
 {
     /**
      * @var string
@@ -15,28 +17,33 @@ class SeoBreadcrumbs
     const VERSION = '1.0.0';
 
     /**
-     * @var Items
-     */
-    protected $items;
-
-    /**
      * @var Template
      */
     protected $template;
 
-    public function __construct()
-    {
-        $this->items = new Items();
+    /**
+     * @var string the name of the breadcrumb container tag.
+     */
+    public $tag;
 
-        $this->template = new Template();
-    }
 
     /**
-     * @return Items
+     * @var array the HTML attributes for the breadcrumb container tag.
+     * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
-    public function getItems(): Items
+    public $options = ['class' => 'breadcrumb'];
+
+    /**
+     * @var array
+     */
+    public $links = [];
+
+
+    public function __construct($config = [])
     {
-        return $this->items;
+        parent::__construct($config);
+
+        $this->template = new Template($this->links, $this->tag ?? 'ul');
     }
 
     /**
@@ -47,8 +54,11 @@ class SeoBreadcrumbs
         return $this->template;
     }
 
-    public function render()
+    /**
+     * Render
+     */
+    public function run()
     {
-        //TODO - in process
+        return $this->getTemplate()->render();
     }
 }
