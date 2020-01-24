@@ -43,7 +43,7 @@ class SeoBreadcrumbs extends Widget
     {
         parent::__construct($config);
 
-        $this->template = new Template($this->links, $this->tag ?? 'ul');
+        $this->template = new Template($this->links, $this->tag ?? 'ul', $this->options);
     }
 
     /**

@@ -14,6 +14,11 @@ class Template
     /**
      * @var string
      */
+    const REPLACE_CONTENT = '{link}';
+
+    /**
+     * @var string
+     */
     protected $tag = 'ul';
 
     /**
@@ -22,34 +27,41 @@ class Template
     protected $params = [];
 
     /**
-     * Use default params
-     *
-     * @var boolean
+     * @var array
      */
-    protected $default = true;
+    protected $options = [];
+
+    /**
+     * There are default options for SEO
+     * @var array
+     */
+    protected $defaultOptions = [
+        'itemscope' => '',
+        'itemtype' => 'http://schema.org/BreadcrumbList',
+    ];
 
      /**
      * @var string
      */
-    protected $template = "<li>{link}</li>\n";
+    protected $template = "<li itemprop=\"itemListElement\" itemscope=\"\" itemtype=\"http://schema.org/ListItem\">{link}</li>\n";
 
     /**
      * @var string
      */
-    protected  $activeTemplate = '<li class="active">{link}</li>\n';
+    protected  $activeTemplate = '<li class="active">{link}</li>';
 
     /**
      * @param array $params
      * @param string $tag
-     * @param boolean $default
+     * @param array $options
      */
-    public function __construct(array $params = [], string $tag = 'ul', bool $default = true)
+    public function __construct(array $params = [], string $tag = 'ul', array $options = [])
     {
         $this->params = $params;
 
         $this->tag = $tag;
 
-        $this->default = $default;
+        $this->options = $options;
     }
 
     /**
@@ -60,7 +72,10 @@ class Template
         return $this->params;
     }
 
-    public function render()
+    /**
+     * @return string
+     */
+    public function render(): string
     {
         if (!$this->getParams()) {
             return '';
@@ -69,14 +84,24 @@ class Template
         $params = $this->getParams();
 
         $links = [];
+        $itempropPosition = 1;
         foreach ($params as $param) {
             if (!empty($param['template'])) {
-                $links[] = strtr($param['template'], ['{link}' => $param['label']]);
-            } else {
-                $links[] = '<li>' . Html::a($param['label'], $param['url']) . '</li>';
+                $links[] = strtr($param['template'], [self::REPLACE_CONTENT => $param['label']]);
             }
+            if (empty($param['url'])) {
+                $span = '<span>' . $param['label'] . ' </span>';
+                $links[] = strtr($this->activeTemplate, [self::REPLACE_CONTENT => $span]);
+            } else {
+                $span = '<span itemprop="name">' . $param['label'] . ' </span>';
+                $content = Html::a($span, $param['url'], ['itemprop' => 'item']) . PHP_EOL . '<meta itemprop="position" content="' . $itempropPosition . '">';
+                $links[] = strtr($this->template, [self::REPLACE_CONTENT => $content]);
+            }
+
+            $itempropPosition++;
         }
 
-        return Html::tag($this->tag, implode('', $links));
+        $options = array_merge($this->options, $this->defaultOptions);
+        return Html::tag($this->tag, implode('', $links), $options);
     }
 }
