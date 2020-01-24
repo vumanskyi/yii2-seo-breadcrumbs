@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src;
 
 use PHPUnit\Framework\TestCase;
@@ -16,6 +17,7 @@ class TemplateTest extends TestCase
 
     /**
      * @dataProvider dataRenderProvider
+     *
      * @param $params
      * @param $tag
      * @param $options
@@ -45,77 +47,78 @@ class TemplateTest extends TestCase
 <meta itemprop="position" content="2"></li>
 <li class="active"><span>Last </span></li></ol>';
 
-        $resultOption= '<ol class="new" itemscope="" itemtype="http://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="/" itemprop="item"><span itemprop="name">Home </span></a>
+        $resultOption = '<ol class="new" itemscope="" itemtype="http://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="/" itemprop="item"><span itemprop="name">Home </span></a>
 <meta itemprop="position" content="1"></li>
 <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="/second" itemprop="item"><span itemprop="name">Second </span></a>
 <meta itemprop="position" content="2"></li>
 </ol>';
 
         $resultTag = '<div class="new" itemscope="" itemtype="http://schema.org/BreadcrumbList"><span>Home</span></div>';
+
         return [
             [
                 [
                     [
                         'label' => 'Home',
-                        'url' => '/'
+                        'url'   => '/',
                     ],
                     [
                         'label' => 'Second',
-                        'url' => '/second'
+                        'url'   => '/second',
                     ],
                     [
                         'label' => 'Last',
-                    ]
+                    ],
                 ],
                 'ul',
                 [],
-                $result
+                $result,
             ],
             [
                 [
                     [
                         'label' => 'Home',
-                        'url' => '/'
+                        'url'   => '/',
                     ],
                     [
                         'label' => 'Second',
-                        'url' => '/second'
+                        'url'   => '/second',
                     ],
                     [
                         'label' => 'Last',
-                    ]
+                    ],
                 ],
                 'ol',
                 [],
-                $resultOl
+                $resultOl,
             ],
             [
                 [
                     [
                         'label' => 'Home',
-                        'url' => '/'
+                        'url'   => '/',
                     ],
                     [
                         'label' => 'Second',
-                        'url' => '/second'
-                    ]
+                        'url'   => '/second',
+                    ],
                 ],
                 'ol',
                 ['class' => 'new'],
-                $resultOption
+                $resultOption,
             ],
             [
                 [
                     [
                         'template' => '<span>{link}</span>',
-                        'label' => 'Home',
-                        'url' => '/'
-                    ]
+                        'label'    => 'Home',
+                        'url'      => '/',
+                    ],
                 ],
                 'div',
                 ['class' => 'new'],
-                $resultTag
-            ]
+                $resultTag,
+            ],
         ];
     }
 }

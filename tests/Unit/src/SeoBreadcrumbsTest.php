@@ -1,4 +1,5 @@
 <?php
+
 namespace umanskyi31\opengraph\test\Unit\src;
 
 use PHPUnit\Framework\TestCase;
