@@ -1,9 +1,9 @@
 {
   "name": "vumanskyi/seo-breadcrumbs",
-  "description": "Modified a widjet for Yii2. The Open Graph component for your website",
+  "description": "Created a widget for Yii2. This is SeoBreadcrumbs widget which can help your website to set the correct scheme for breadcrumbs",
   "keywords": ["yii2", "extension", "breadcrumbs", "seo", "seo-breadcrumbs", "widget"],
   "homepage": "https://github.com/vumanskyi/seo-breadcrumbs",
-  "type": "yii2-widjet",
+  "type": "yii2-widget",
   "version": "1.0.0",
   "license": "MIT",
   "authors": [

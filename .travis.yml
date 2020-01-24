@@ -15,8 +15,8 @@ before_script:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-source --dev
 
-#script:
-#  - php vendor/bin/phpunit -c phpunit.xml.dist
+script:
+  - php vendor/bin/phpunit -c phpunit.xml.dist
 
 branches:
   only: master

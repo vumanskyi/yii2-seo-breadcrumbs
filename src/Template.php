@@ -88,11 +88,12 @@ class Template
 
         $links = [];
         $itempropPosition = 1;
+
         foreach ($params as $param) {
             if (!empty($param['template'])) {
                 $links[] = strtr($param['template'], [self::REPLACE_CONTENT => $param['label']]);
-            }
-            if (empty($param['url'])) {
+
+            } elseif (empty($param['url'])) {
                 $span = '<span>'.$param['label'].' </span>';
                 $links[] = strtr($this->activeTemplate, [self::REPLACE_CONTENT => $span]);
             } else {
