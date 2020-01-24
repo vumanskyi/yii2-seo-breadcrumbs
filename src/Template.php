@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace VUmanskyi\SeoBreadcrumbs;
@@ -7,6 +8,7 @@ use yii\helpers\Html;
 
 /**
  * @author Vlad Umanskyi <vladumanskyi@gmail.com>
+ *
  * @version  1.0.0
  */
 class Template
@@ -32,15 +34,16 @@ class Template
     protected $options = [];
 
     /**
-     * There are default options for SEO
+     * There are default options for SEO.
+     *
      * @var array
      */
     protected $defaultOptions = [
         'itemscope' => '',
-        'itemtype' => 'http://schema.org/BreadcrumbList',
+        'itemtype'  => 'http://schema.org/BreadcrumbList',
     ];
 
-     /**
+    /**
      * @var string
      */
     protected $template = "<li itemprop=\"itemListElement\" itemscope=\"\" itemtype=\"http://schema.org/ListItem\">{link}</li>\n";
@@ -48,12 +51,12 @@ class Template
     /**
      * @var string
      */
-    protected  $activeTemplate = '<li class="active">{link}</li>';
+    protected $activeTemplate = '<li class="active">{link}</li>';
 
     /**
-     * @param array $params
+     * @param array  $params
      * @param string $tag
-     * @param array $options
+     * @param array  $options
      */
     public function __construct(array $params = [], string $tag = 'ul', array $options = [])
     {
@@ -90,11 +93,11 @@ class Template
                 $links[] = strtr($param['template'], [self::REPLACE_CONTENT => $param['label']]);
             }
             if (empty($param['url'])) {
-                $span = '<span>' . $param['label'] . ' </span>';
+                $span = '<span>'.$param['label'].' </span>';
                 $links[] = strtr($this->activeTemplate, [self::REPLACE_CONTENT => $span]);
             } else {
-                $span = '<span itemprop="name">' . $param['label'] . ' </span>';
-                $content = Html::a($span, $param['url'], ['itemprop' => 'item']) . PHP_EOL . '<meta itemprop="position" content="' . $itempropPosition . '">';
+                $span = '<span itemprop="name">'.$param['label'].' </span>';
+                $content = Html::a($span, $param['url'], ['itemprop' => 'item']).PHP_EOL.'<meta itemprop="position" content="'.$itempropPosition.'">';
                 $links[] = strtr($this->template, [self::REPLACE_CONTENT => $content]);
             }
 
@@ -102,6 +105,7 @@ class Template
         }
 
         $options = array_merge($this->options, $this->defaultOptions);
+
         return Html::tag($this->tag, implode('', $links), $options);
     }
 }

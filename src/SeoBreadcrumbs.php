@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace VUmanskyi\SeoBreadcrumbs;
@@ -7,6 +8,7 @@ use yii\base\Widget;
 
 /**
  * @author Vlad Umanskyi <vladumanskyi@gmail.com>
+ *
  * @version  1.0.0
  */
 class SeoBreadcrumbs extends Widget
@@ -26,9 +28,9 @@ class SeoBreadcrumbs extends Widget
      */
     public $tag;
 
-
     /**
      * @var array the HTML attributes for the breadcrumb container tag.
+     *
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
     public $options = ['class' => 'breadcrumb'];
@@ -37,7 +39,6 @@ class SeoBreadcrumbs extends Widget
      * @var array
      */
     public $links = [];
-
 
     public function __construct($config = [])
     {
@@ -55,7 +56,7 @@ class SeoBreadcrumbs extends Widget
     }
 
     /**
-     * Render
+     * Render.
      */
     public function run()
     {
