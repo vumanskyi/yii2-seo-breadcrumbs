@@ -1,11 +1,15 @@
 {
-  "name": "vumanskyi/seo-breadcrumbs",
+  "name": "vumanskyi/yii2-seo-breadcrumbs",
   "description": "Created a widget for Yii2. This is SeoBreadcrumbs widget which can help your website to set the correct scheme for breadcrumbs",
-  "keywords": ["yii2", "extension", "breadcrumbs", "seo", "seo-breadcrumbs", "widget"],
+  "keywords": ["yii2", "extension", "breadcrumbs", "seo", "seo-breadcrumbs", "widget", "schema"],
   "homepage": "https://github.com/vumanskyi/seo-breadcrumbs",
-  "type": "yii2-widget",
+  "type": "yii2-extension",
   "version": "1.0.0",
   "license": "MIT",
+  "support": {
+    "source": "https://github.com/vumanskyi/yii2-seo-breadcrumbs",
+    "issues": "https://github.com/vumanskyi/yii2-seo-breadcrumbs/issues"
+  },
   "authors": [
     {
       "name": "Vlad Umanskyi",
