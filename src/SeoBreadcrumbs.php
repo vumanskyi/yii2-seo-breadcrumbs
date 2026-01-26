@@ -9,36 +9,36 @@ use yii\base\Widget;
 /**
  * @author Vlad Umanskyi <vladumanskyi@gmail.com>
  *
- * @version  1.0.0
+ * @version  1.0.1
  */
 class SeoBreadcrumbs extends Widget
 {
     /**
      * @var string
      */
-    const VERSION = '1.0.0';
+    public const VERSION = '1.0.1';
 
     /**
      * @var Template
      */
-    protected $template;
+    protected Template $template;
 
     /**
-     * @var string the name of the breadcrumb container tag.
+     * @var string|null the name of the breadcrumb container tag.
      */
-    public $tag;
+    public ?string $tag = null;
 
     /**
      * @var array the HTML attributes for the breadcrumb container tag.
      *
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
-    public $options = ['class' => 'breadcrumb'];
+    public array $options = ['class' => 'breadcrumb'];
 
     /**
      * @var array
      */
-    public $links = [];
+    public array $links = [];
 
     public function __construct($config = [])
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace umanskyi31\opengraph\test\Unit\src;
+namespace VUmanskyi\SeoBreadcrumbs\test\Unit\src;
 
 use PHPUnit\Framework\TestCase;
 use VUmanskyi\SeoBreadcrumbs\SeoBreadcrumbs;

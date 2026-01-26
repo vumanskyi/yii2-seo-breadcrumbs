@@ -1,6 +1,6 @@
 <?php
 
-namespace umanskyi31\opengraph\test\Unit\src;
+namespace VUmanskyi\SeoBreadcrumbs\test\Unit\src;
 
 use PHPUnit\Framework\TestCase;
 use VUmanskyi\SeoBreadcrumbs\Template;
@@ -35,25 +35,25 @@ class TemplateTest extends TestCase
      */
     public function dataRenderProvider(): array
     {
-        $result = '<ul itemscope="" itemtype="http://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="/" itemprop="item"><span itemprop="name">Home </span></a>
+        $result = '<ul itemscope="" itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a href="/" itemprop="item"><span itemprop="name">Home </span></a>
 <meta itemprop="position" content="1"></li>
-<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="/second" itemprop="item"><span itemprop="name">Second </span></a>
+<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a href="/second" itemprop="item"><span itemprop="name">Second </span></a>
 <meta itemprop="position" content="2"></li>
 <li class="active"><span>Last </span></li></ul>';
 
-        $resultOl = '<ol itemscope="" itemtype="http://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="/" itemprop="item"><span itemprop="name">Home </span></a>
+        $resultOl = '<ol itemscope="" itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a href="/" itemprop="item"><span itemprop="name">Home </span></a>
 <meta itemprop="position" content="1"></li>
-<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="/second" itemprop="item"><span itemprop="name">Second </span></a>
+<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a href="/second" itemprop="item"><span itemprop="name">Second </span></a>
 <meta itemprop="position" content="2"></li>
 <li class="active"><span>Last </span></li></ol>';
 
-        $resultOption = '<ol class="new" itemscope="" itemtype="http://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="/" itemprop="item"><span itemprop="name">Home </span></a>
+        $resultOption = '<ol class="new" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a href="/" itemprop="item"><span itemprop="name">Home </span></a>
 <meta itemprop="position" content="1"></li>
-<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a href="/second" itemprop="item"><span itemprop="name">Second </span></a>
+<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"><a href="/second" itemprop="item"><span itemprop="name">Second </span></a>
 <meta itemprop="position" content="2"></li>
 </ol>';
 
-        $resultTag = '<div class="new" itemscope="" itemtype="http://schema.org/BreadcrumbList"><span>Home</span></div>';
+        $resultTag = '<div class="new" itemscope="" itemtype="https://schema.org/BreadcrumbList"><span>Home</span></div>';
 
         return [
             [

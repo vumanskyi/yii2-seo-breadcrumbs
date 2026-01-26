@@ -9,7 +9,7 @@ use yii\helpers\Html;
 /**
  * @author Vlad Umanskyi <vladumanskyi@gmail.com>
  *
- * @version  1.0.0
+ * @version  1.0.1
  */
 class Template
 {
@@ -21,37 +21,37 @@ class Template
     /**
      * @var string
      */
-    protected $tag = 'ul';
+    protected string $tag = 'ul';
 
     /**
      * @var array
      */
-    protected $params = [];
+    protected array $params = [];
 
     /**
      * @var array
      */
-    protected $options = [];
+    protected array $options = [];
 
     /**
      * There are default options for SEO.
      *
      * @var array
      */
-    protected $defaultOptions = [
+    protected array $defaultOptions = [
         'itemscope' => '',
-        'itemtype'  => 'http://schema.org/BreadcrumbList',
+        'itemtype'  => 'https://schema.org/BreadcrumbList',
     ];
 
     /**
      * @var string
      */
-    protected $template = "<li itemprop=\"itemListElement\" itemscope=\"\" itemtype=\"http://schema.org/ListItem\">{link}</li>\n";
+    protected string $template = "<li itemprop=\"itemListElement\" itemscope=\"\" itemtype=\"https://schema.org/ListItem\">{link}</li>\n";
 
     /**
      * @var string
      */
-    protected $activeTemplate = '<li class="active">{link}</li>';
+    protected string $activeTemplate = '<li class="active">{link}</li>';
 
     /**
      * @param array  $params
